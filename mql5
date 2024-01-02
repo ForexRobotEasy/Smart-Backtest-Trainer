@@ -1,0 +1,94 @@
+mql5
+//+------------------------------------------------------------------+
+//|                                                     Smart Backtest Trainer |
+//|                        https://www.forexroboteasy.com                          |
+//|                                                    Forex Robot Easy Team |
+//+------------------------------------------------------------------+
+#property strict
+
+// Global variables
+int TP = 0; // Take Profit
+int SL = 0; // Stop Loss
+int Entry = 0; // Entry level
+double totalProfit = 0; // Total profit or loss
+double winRate = 0; // Win rate
+
+//+------------------------------------------------------------------+
+//| Custom indicator initialization function                         |
+//+------------------------------------------------------------------+
+int OnInit()
+{
+   // Add required indicators and initialize variables here
+   
+   return(INIT_SUCCEEDED);
+}
+
+//+------------------------------------------------------------------+
+//| Custom indicator deinitialization function                       |
+//+------------------------------------------------------------------+
+void OnDeinit(const int reason)
+{
+   // Perform necessary cleanup tasks here
+}
+
+//+------------------------------------------------------------------+
+//| Custom indicator iteration function                              |
+//+------------------------------------------------------------------+
+void OnCalculate(const int rates_total,
+                 const int prev_calculated,
+                 const datetime &time[],
+                 const double &open[],
+                 const double &high[],
+                 const double &low[],
+                 const double &close[],
+                 const long &tick_volume[],
+                 const long &volume[],
+                 const int &spread[])
+{
+   // Perform calculations and trading logic here
+
+   // Modify TP, SL, Entry using MT4 tools
+   TP = ObjectGetInteger(0, 'TakeProfit');
+   SL = ObjectGetInteger(0, 'StopLoss');
+   Entry = ObjectGetInteger(0, 'Entry');
+
+   // Update trading results
+   totalProfit = CalculateTotalProfit();
+   winRate = CalculateWinRate();
+
+   // Display trading result panel
+   ShowTradingResultPanel(totalProfit, winRate);
+}
+
+//+------------------------------------------------------------------+
+//| Calculate total profit or loss                                   |
+//+------------------------------------------------------------------+
+double CalculateTotalProfit()
+{
+   double profit = 0;
+
+   // Calculate profit based on trades
+
+   return profit;
+}
+
+//+------------------------------------------------------------------+
+//| Calculate win rate                                               |
+//+------------------------------------------------------------------+
+double CalculateWinRate()
+{
+   double rate = 0;
+
+   // Calculate win rate based on trades
+
+   return rate;
+}
+
+//+------------------------------------------------------------------+
+//| Display trading result panel                                      |
+//+------------------------------------------------------------------+
+void ShowTradingResultPanel(const double profit, const double rate)
+{
+   // Display the total profit or loss and win rate in a panel
+   Comment('Total Profit/Loss: ', profit, ' | Win Rate: ', rate, '%');
+}
